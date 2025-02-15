@@ -1,11 +1,7 @@
-// app/api/stripe/route.ts
 import { NextResponse } from 'next/server';
 import stripe from '@/lib/stripe';
 
-export async function POST(req: Request) {
-  const body = await req.json();
-  const { name, description, rate } = body;
-
+export async function POST() {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
