@@ -1,0 +1,78 @@
+---
+to: app/api/job-posts/route.ts
+---
+// API for job listings
+
+---
+to: app/api/auth/[...nextauth]/route.ts
+---
+import NextAuth from 'next-auth';
+// NextAuth configuration
+
+---
+to: app/api/stripe/route.ts
+---
+import stripe from '@/lib/stripe';
+// Stripe Checkout API
+
+---
+to: app/components/Navbar.tsx
+---
+import Link from 'next/link';
+// Navbar component
+
+---
+to: app/components/JobCard.tsx
+---
+const JobCard = () => {};
+// JobCard component
+
+---
+to: app/components/JobForm.tsx
+---
+const JobForm = () => {};
+// JobForm component
+
+---
+to: app/layout.tsx
+---
+import Navbar from './components/Navbar';
+// Main layout wrapper
+
+---
+to: app/page.tsx
+---
+import JobCard from './components/JobCard';
+// Home page with job listings
+
+---
+to: lib/prisma.ts
+---
+import { PrismaClient } from '@prisma/client';
+// Prisma Client setup
+
+---
+to: lib/stripe.ts
+---
+import Stripe from 'stripe';
+// Stripe configuration
+
+---
+to: prisma/schema.prisma
+---
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Job {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  rate        Int
+  createdAt   DateTime @default(now())
+}
